@@ -21,6 +21,6 @@ jobs:
       - name: web-deploy
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-           server: ${{ secrets.FTP_SERVER }}
-           username: ${{ secrets.FTP_USER }}
+           server: ftp.wayne-industries.com
+           username: u780731685.github_hostinger
            password: ${{ secrets.FTP_PASS }}
