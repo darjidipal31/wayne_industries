@@ -1,5 +1,9 @@
 text/x-generic .htaccess ( UTF-8 Unicode text )
 Options -Indexes
+
+#Alternate default index page
+DirectoryIndex home
+
 RewriteEngine on
 
 RewriteCond %{REQUEST_FILENAME} !-d
