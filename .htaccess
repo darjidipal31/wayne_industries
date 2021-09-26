@@ -1,0 +1,31 @@
+text/x-generic .htaccess ( UTF-8 Unicode text )
+Options -Indexes
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC, L]
+
+RewriteCond %{HTTP_REFERER} !^http://wayne-industries.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://wayne-industries.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.wayne-industries.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.wayne-industries.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://wayne-industries.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://wayne-industries.com$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.wayne-industries.com/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.wayne-industries.com$      [NC]
+RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^wayne-industries\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.wayne-industries\.com$
+RewriteRule ^/?$ "https\:\/\/wayne-industries\.com\/" [R=301,L]
+<IfModule mod_headers.c>
+Header set Access-Control-Allow-Origin "*"
+Header always set X-Frame-Options DENY
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Content-Type-Options nosniff
+Header set Referrer-Policy: strict-origin-when-cross-origin
+Header set Strict-Transport-Security "max-age=31536000;includeSubDomains;"
+Header set Cache-Control "max-age=31536000, public"
+</IfModule>
